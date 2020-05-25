@@ -4,15 +4,17 @@ PORT="3306"
 User="root"
 PS="mqzhifu"
 DIR=`pwd`
-STORAGE_DIR="/home/www/instantplay/storage"
-UPLOAD_DIR="/home/www/instantplay/static/upload"
-PRODUCT_DIR="/home/www/instantplay/doc/init_env.php"
+
+#STORAGE_DIR="/home/www/instantplay/storage"
+#UPLOAD_DIR="/home/www/instantplay/static/upload"
+#PRODUCT_DIR="/home/www/instantplay/doc/init_env.php"
+
+#/soft/php/bin/php $PRODUCT_DIR pre
+#chmod 777 -R $STORAGE_DIR
+#chmod 777 -R $UPLOAD_DIR
 
 
-/soft/php/bin/php $PRODUCT_DIR pre
 
-chmod 777 -R $STORAGE_DIR
-chmod 777 -R $UPLOAD_DIR
 
 export MYSQL_PWD=${PS}
 
