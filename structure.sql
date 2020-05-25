@@ -615,30 +615,31 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `sex` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未知1男2女',
-  `realname` varchar(50) NOT NULL COMMENT '真实姓名',
-  `mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '手机号',
-  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `birthday` int(11) NOT NULL,
-  `a_time` int(11) NOT NULL DEFAULT '0',
-  `avatar` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '头像',
-  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1普通2一级代理',
-  `experience` int(11) NOT NULL DEFAULT '0' COMMENT '经验值',
-  `point` int(11) NOT NULL DEFAULT '0' COMMENT '积分',
-  `coin` int(11) NOT NULL DEFAULT '0' COMMENT '金币',
-  `wx_open_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '微信OPENid',
-  `consume_total` int(11) NOT NULL DEFAULT '0' COMMENT '消费总金额',
-  `order_num` int(11) NOT NULL DEFAULT '0' COMMENT '消费订单数',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1正常2已禁用',
-  `province_code` int(11) NOT NULL DEFAULT '0' COMMENT '省',
-  `city_code` int(11) NOT NULL DEFAULT '0' COMMENT '市',
-  `county_code` int(11) NOT NULL DEFAULT '0' COMMENT '县',
-  `town_code` int(11) NOT NULL DEFAULT '0' COMMENT '乡镇',
-  `id_card_num` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
-  `inner_type` tinyint(1) NOT NULL COMMENT '1正常2机器人',
-  `uid_str` varchar(50) NOT NULL,
+  `uname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sex` tinyint(1) DEFAULT '0' COMMENT '0未知1男2女',
+  `realname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '真实姓名',
+  `mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '手机号',
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `birthday` int(11) DEFAULT NULL,
+  `a_time` int(11) DEFAULT '0',
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '头像',
+  `type` tinyint(1) DEFAULT '0' COMMENT '1普通2一级代理',
+  `experience` int(11) DEFAULT '0' COMMENT '经验值',
+  `point` int(11) DEFAULT '0' COMMENT '积分',
+  `coin` int(11) DEFAULT '0' COMMENT '金币',
+  `wx_open_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '微信OPENid',
+  `consume_total` int(11) DEFAULT '0' COMMENT '消费总金额',
+  `order_num` int(11) DEFAULT '0' COMMENT '消费订单数',
+  `status` tinyint(1) DEFAULT '0' COMMENT '1正常2已禁用',
+  `province_code` int(11) DEFAULT '0' COMMENT '省',
+  `city_code` int(11) DEFAULT '0' COMMENT '市',
+  `county_code` int(11) DEFAULT '0' COMMENT '县',
+  `town_code` int(11) DEFAULT '0' COMMENT '乡镇',
+  `id_card_num` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0',
+  `inner_type` tinyint(1) DEFAULT NULL COMMENT '1正常2机器人',
+  `uid_str` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `wx_union_id` varchar(50) DEFAULT NULL COMMENT '微信联合ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -736,6 +737,7 @@ CREATE TABLE `user_log` (
   `ac` varchar(50) DEFAULT NULL,
   `request` text COMMENT '请求参数',
   `uid` int(11) DEFAULT NULL,
+  `client_info` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户行为日志';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -808,4 +810,4 @@ CREATE TABLE `withdraw_money` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-17 19:56:22
+-- Dump completed on 2020-05-25 20:09:23
