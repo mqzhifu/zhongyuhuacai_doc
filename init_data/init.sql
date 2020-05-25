@@ -133,7 +133,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'system','系统管理员',2,'xiaoz','13000000000','78878296@qq.com',1589078283,1589078283,'0',3,0,0,0,'0',0,0,1,0,0,0,0,'',0,'');
+insert  into `user`(`id`,`uname`,`nickname`,`sex`,`realname`,`mobile`,`email`,`birthday`,`a_time`,`avatar`,`type`,`experience`,`point`,`coin`,`wx_open_id`,`consume_total`,`order_num`,`status`,`province_code`,`city_code`,`county_code`,`town_code`,`id_card_num`,`inner_type`,`uid_str`,`wx_union_id`) values (1,'system','系统管理员',2,'xiaoz','13000000000','78878296@qq.com',1589078283,1589078283,'0',3,0,0,0,'0',0,0,1,0,0,0,0,'',0,'',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
