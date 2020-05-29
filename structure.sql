@@ -220,6 +220,7 @@ CREATE TABLE `factory` (
   `status` tinyint(1) DEFAULT NULL COMMENT '1等待审核2已通过3拒绝',
   `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
   `sex` tinyint(1) DEFAULT NULL COMMENT '1男2女',
+  `pic` varbinary(255) DEFAULT NULL COMMENT '工厂描述图片',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='厂商';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -378,7 +379,7 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `no` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编号',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '归属产品ID',
-  `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品ID',
+  `gid` int(11) NOT NULL DEFAULT '0' COMMENT '商品ID',
   `price` int(11) NOT NULL DEFAULT '0' COMMENT '单位:分',
   `pay_type` tinyint(2) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1未支付2已支付3已发货4已签收5已退款',
@@ -676,7 +677,7 @@ DROP TABLE IF EXISTS `user_collection`;
 CREATE TABLE `user_collection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) DEFAULT NULL,
-  `goods_id` int(11) DEFAULT NULL,
+  `gid` int(11) DEFAULT NULL,
   `a_time` int(11) DEFAULT NULL,
   `uid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -810,4 +811,4 @@ CREATE TABLE `withdraw_money` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-25 20:09:23
+-- Dump completed on 2020-05-26 10:22:36
