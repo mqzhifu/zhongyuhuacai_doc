@@ -377,7 +377,7 @@ DROP TABLE IF EXISTS `orders`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `no` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编号',
+  `no` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编号',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '归属产品ID',
   `gid` int(11) NOT NULL DEFAULT '0' COMMENT '商品ID',
   `price` int(11) NOT NULL DEFAULT '0' COMMENT '单位:分',
@@ -407,7 +407,7 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题',
-  `subtitle` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '副标题',
+  `subtitle` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '副标题',
   `desc` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '描述',
   `brand` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '品牌',
   `attribute` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '产品参数',
@@ -416,20 +416,24 @@ CREATE TABLE `product` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1下架2上架',
   `a_time` int(11) NOT NULL DEFAULT '0',
   `lables` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标签组',
-  `is_search` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1不支持2支持',
-  `admin_id` int(11) NOT NULL DEFAULT '0',
-  `pv` int(11) NOT NULL DEFAULT '0',
-  `uv` int(11) NOT NULL DEFAULT '0',
-  `recommend` tinyint(1) NOT NULL DEFAULT '2' COMMENT '1是2否,推荐',
-  `pic` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '产品描述图',
-  `lowest_price` int(11) NOT NULL DEFAULT '0' COMMENT '取商品中最低的价格，单位:分',
-  `factory_uid` int(11) NOT NULL DEFAULT '0' COMMENT '工厂Id',
-  `desc_attr` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '产品描述的详细参数',
-  `spider_source_type` tinyint(1) NOT NULL COMMENT '抓取来源1平台自己2:1688',
-  `spider_source_pid` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '抓取来源-产品ID',
-  `sort` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
-  `category_attr_null` tinyint(4) NOT NULL DEFAULT '2' COMMENT '1是2否',
+  `is_search` tinyint(1) DEFAULT '1' COMMENT '1不支持2支持',
+  `admin_id` int(11) DEFAULT '0',
+  `pv` int(11) DEFAULT '0',
+  `uv` int(11) DEFAULT '0',
+  `recommend` tinyint(1) DEFAULT '2' COMMENT '1是2否,推荐',
+  `pic` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '产品描述图',
+  `lowest_price` int(11) DEFAULT '0' COMMENT '取商品中最低的价格，单位:分',
+  `factory_uid` int(11) DEFAULT '0' COMMENT '工厂Id',
+  `desc_attr` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '产品描述的详细参数',
+  `spider_source_type` tinyint(1) DEFAULT NULL COMMENT '抓取来源1平台自己2:1688',
+  `spider_source_pid` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '抓取来源-产品ID',
+  `sort` int(11) DEFAULT '1' COMMENT '排序',
+  `category_attr_null` tinyint(4) DEFAULT '2' COMMENT '1是2否',
   `goods_total` int(11) NOT NULL DEFAULT '0' COMMENT '包含总商品数',
+  `user_buy_total` int(11) NOT NULL DEFAULT '0' COMMENT '用户总购买数',
+  `user_up_total` int(11) NOT NULL DEFAULT '0' COMMENT '用户点赞总数',
+  `user_collect_total` int(11) NOT NULL DEFAULT '0' COMMENT '用户收藏总数',
+  `user_comment_total` int(11) NOT NULL DEFAULT '0' COMMENT '用户总评论数',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -444,6 +448,8 @@ DROP TABLE IF EXISTS `product_category`;
 CREATE TABLE `product_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `is_show_index` tinyint(1) DEFAULT NULL COMMENT '显示到首页1是2否',
+  `pic` varchar(255) DEFAULT NULL COMMENT 'LOGO图标',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='产品分类';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -637,10 +643,12 @@ CREATE TABLE `user` (
   `city_code` int(11) DEFAULT '0' COMMENT '市',
   `county_code` int(11) DEFAULT '0' COMMENT '县',
   `town_code` int(11) DEFAULT '0' COMMENT '乡镇',
-  `id_card_num` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0',
+  `id_card_no` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0',
   `inner_type` tinyint(1) DEFAULT NULL COMMENT '1正常2机器人',
   `uid_str` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `wx_union_id` varchar(50) DEFAULT NULL COMMENT '微信联合ID',
+  `ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ps` char(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -739,6 +747,7 @@ CREATE TABLE `user_log` (
   `request` text COMMENT '请求参数',
   `uid` int(11) DEFAULT NULL,
   `client_info` text,
+  `ip_parser` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户行为日志';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -801,6 +810,24 @@ CREATE TABLE `withdraw_money` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='提现';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `wx_location`
+--
+
+DROP TABLE IF EXISTS `wx_location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `wx_location` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_time` int(11) DEFAULT NULL,
+  `latitude` varchar(50) DEFAULT NULL,
+  `longitude` varchar(50) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `gps_parser_addr` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -811,4 +838,4 @@ CREATE TABLE `withdraw_money` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-26 10:22:36
+-- Dump completed on 2020-05-31 19:34:33
