@@ -649,6 +649,7 @@ CREATE TABLE `user` (
   `wx_union_id` varchar(50) DEFAULT NULL COMMENT '微信联合ID',
   `ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `ps` char(32) DEFAULT NULL,
+  `id_card_num` varchar(50) DEFAULT NULL COMMENT '身份证号',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -838,4 +839,4 @@ CREATE TABLE `wx_location` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-31 19:34:33
+-- Dump completed on 2020-05-31 20:06:15
