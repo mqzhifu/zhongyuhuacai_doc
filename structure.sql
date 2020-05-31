@@ -220,7 +220,7 @@ CREATE TABLE `factory` (
   `status` tinyint(1) DEFAULT NULL COMMENT '1等待审核2已通过3拒绝',
   `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
   `sex` tinyint(1) DEFAULT NULL COMMENT '1男2女',
-  `pic` varbinary(255) DEFAULT NULL COMMENT '工厂描述图片',
+  `pic` varchar(255) DEFAULT NULL COMMENT '工厂描述图片',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='厂商';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -839,4 +839,4 @@ CREATE TABLE `wx_location` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-31 20:06:15
+-- Dump completed on 2020-05-31 20:12:06
