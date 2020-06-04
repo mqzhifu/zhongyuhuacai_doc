@@ -204,6 +204,25 @@ CREATE TABLE `black_word` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `coupon`
+--
+
+DROP TABLE IF EXISTS `coupon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `coupon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` tinyint(1) DEFAULT NULL COMMENT '暂时不用',
+  `price` int(11) DEFAULT NULL COMMENT '价格',
+  `a_time` int(11) DEFAULT NULL COMMENT '添加时间',
+  `status` tinyint(4) DEFAULT NULL COMMENT '1未使用1已使用',
+  `uid` int(11) DEFAULT NULL COMMENT '用户ID',
+  `code` varchar(64) DEFAULT NULL COMMENT '编码',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `factory`
 --
 
@@ -261,6 +280,23 @@ CREATE TABLE `goods` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `goods_link_category_attr`
+--
+
+DROP TABLE IF EXISTS `goods_link_category_attr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `goods_link_category_attr` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gid` int(11) DEFAULT NULL,
+  `pc_id` int(11) DEFAULT NULL,
+  `pca_id` int(11) DEFAULT NULL,
+  `pcap_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `id_num`
 --
 
@@ -275,6 +311,21 @@ CREATE TABLE `id_num` (
   `str` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '归属地-县',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='身份证-号码段-归属地';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) DEFAULT NULL,
+  `src` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,7 +431,10 @@ CREATE TABLE `orders` (
   `no` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编号',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '归属产品ID',
   `gid` int(11) NOT NULL DEFAULT '0' COMMENT '商品ID',
-  `price` int(11) NOT NULL DEFAULT '0' COMMENT '单位:分',
+  `goods_price` int(11) NOT NULL DEFAULT '0' COMMENT '商品单价-单位:分',
+  `total_price` int(11) DEFAULT NULL COMMENT '订单实付总金额',
+  `coupon_price` int(11) DEFAULT NULL COMMENT '优惠卷金额',
+  `haulage` int(11) DEFAULT '0' COMMENT '运费',
   `pay_type` tinyint(2) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1未支付2已支付3已发货4已签收5已退款',
   `uid` int(1) NOT NULL DEFAULT '0' COMMENT '用户ID',
@@ -393,6 +447,8 @@ CREATE TABLE `orders` (
   `agent_withdraw_money_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1未操作2已提取',
   `factory_withdraw_money_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1未操作2已提取',
   `num` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
+  `coupon_id` int(11) DEFAULT NULL COMMENT '优惠卷',
+  `out_trade_no` varchar(100) DEFAULT NULL COMMENT '3方支付ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -771,6 +827,22 @@ CREATE TABLE `user_product_liked` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `user_product_log`
+--
+
+DROP TABLE IF EXISTS `user_product_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `user_product_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `a_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `verifier_code`
 --
 
@@ -839,4 +911,4 @@ CREATE TABLE `wx_location` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-31 20:16:02
+-- Dump completed on 2020-06-04 20:16:03
