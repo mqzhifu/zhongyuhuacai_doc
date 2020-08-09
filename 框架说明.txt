@@ -75,3 +75,24 @@ storage	一些变化的静态文件，如：log smarty编译后的文件 session
     session     会话日志
     tb_product  1688爬虫数据源
     view_c  后台编译后的，输出HTML，临时文件
+    deploy  github 钩子，用于提交代码后自动 更新服务器代码
+    img_size    图片等比例缩放，用GD编写效果一般
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
