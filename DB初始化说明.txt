@@ -18,6 +18,8 @@
 	(2)php shell.php parserTBDetail
 		先把，淘宝的txt文件分析完，入到自己的库中。
 		/home/www/zhongyuhuacai/storage/tb_product
+		cp /home/www/zhongyuhuacai_doc/tb_product/* ./
+		( 0e11a09a-4cb7-42db-a14b-010553afca96.tmp.txt 用不了)
 		TRUNCATE TABLE product_tb
 
 		SELECT * FROM product_tb
@@ -26,6 +28,21 @@
 		select * from product
 		select * from goods
 
+	(4) update goods set stock = 10
+	(5) update product set recommend = 1 where id <=20
+	(6) update product set recommend_detail = 1 where id > 20 and id <=40 
+	(7) UPDATE product SET category_id = 1 WHERE id <=10;
+        UPDATE product SET category_id = 2 WHERE id >10 AND id<=20;
+        UPDATE product SET category_id = 3 WHERE id >20 AND id<=30;
+        UPDATE product SET category_id = 4 WHERE id >30 AND id<=50;
+        UPDATE product SET category_id = 5 WHERE id >50;
+
+
+alter table user charset=utf8mb4;
+
+ALTER TABLE USER CHANGE nickname nickname VARCHAR(50) CHARSET utf8mb4;
+
+ALTER TABLE USER CHANGE uname uname VARCHAR(50) CHARSET utf8mb4;
 
 
 
