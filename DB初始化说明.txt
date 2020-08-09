@@ -8,4 +8,24 @@
 	(4)导入基础表
 	(5)导入表中的基础数据
 5.USER表，得灌入些假数据，不然页面太难看。
-6.
+	(1)cd /home/www/zhongyuhuacai/instantplayadmin
+	(2)php shell.php insertRobot
+		(/home/www/zhongyuhuacai_static/upload/instantplayadmin/dev/avatar/ai/)
+		select * from user
+6.导入产品（1688抓取的）
+	
+	(1)cd /home/www/zhongyuhuacai/instantplayadmin
+	(2)php shell.php parserTBDetail
+		先把，淘宝的txt文件分析完，入到自己的库中。
+		/home/www/zhongyuhuacai/storage/tb_product
+		TRUNCATE TABLE product_tb
+
+		SELECT * FROM product_tb
+	(3)php shell.php inserTBDb
+		把已要入库的格式的数据，转换成自己项目的数据格式。
+		select * from product
+		select * from goods
+
+
+
+
