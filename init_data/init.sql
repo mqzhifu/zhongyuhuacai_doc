@@ -206,7 +206,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `agent` WRITE;
 /*!40000 ALTER TABLE `agent` DISABLE KEYS */;
-INSERT INTO `agent` VALUES (1,'A铺子','152123','王小z',1,1,'财政旧楼',150000,150700,150722,'150722100','莫旗',1,'20200503181859_5541.png','13522536459',1589078283,1589078283,1,1589078283,10),(5,'sdfsdsdf','sdfsdf','sdfsdf',1,1,'sdfsdfsdf',130000,130900,130923,'undefined','',0,'20200524002342_3976.png','sdfsd',0,1590251022,0,0,0);
+insert  into `agent`(`id`,`title`,`id_card_num`,`real_name`,`status`,`type`,`address`,`province_code`,`city_code`,`county_code`,`towns_code`,`villages`,`sex`,`pic`,`mobile`,`u_time`,`a_time`,`audit_admin_id`,`audit_time`,`fee_percent`,`uid`,`invite_code`,`invite_agent_uid`,`sub_fee_percent`) values (10000,'A铺子','152123','王小z',1,1,'财政旧楼',150000,150700,150722,'150722100','莫旗',1,'20200503181859_5541.png','13522536459',1589078283,1589078283,1,1589078283,10,100000,'aabbcc',NULL,1),(10001,'饰品小生活','','',1,2,'',110000,110100,110102,'110101007','东四十条，银楼大厦B座12层，1204',0,'','13511112222',0,1593331496,0,0,0,110697,NULL,10000,NULL);
 /*!40000 ALTER TABLE `agent` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -280,7 +280,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `product_category` WRITE;
 /*!40000 ALTER TABLE `product_category` DISABLE KEYS */;
-INSERT INTO `product_category` VALUES (1,'服装用品',1,'1.png'),(2,'美妆日化',1,'2.png'),(3,'家纺家饰',1,'3.png'),(4,'食品生鲜',1,'4.png'),(5,'母婴用品',1,'5.png'),(6,'日用百货',2,''),(7,'工艺礼品',2,''),(8,'1688抓取',2,'');
+insert  into `product_category`(`id`,`name`,`pic`,`is_show_index`,`is_show_search`) values (1,'服装用品','1.png',1,1),(2,'美妆日化','2.png',1,1),(3,'家纺家饰','3.png',1,1),(4,'食品生鲜','4.png',1,1),(5,'母婴用品','5.png',1,1),(6,'日用百货','',2,2),(7,'工艺礼品','',2,2),(8,'1688抓取','',2,2);
 /*!40000 ALTER TABLE `product_category` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
