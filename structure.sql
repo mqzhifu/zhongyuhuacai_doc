@@ -45,14 +45,14 @@ DROP TABLE IF EXISTS `admin_user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `admin_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uname` varchar(50) DEFAULT NULL COMMENT '姓名',
-  `ps` varchar(50) DEFAULT NULL COMMENT '密码',
-  `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
+  `uname` varchar(50) CHARACTER SET utf8 DEFAULT NULL COMMENT '姓名',
+  `ps` varchar(50) CHARACTER SET utf8 DEFAULT NULL COMMENT '密码',
+  `nickname` varchar(50) CHARACTER SET utf8 DEFAULT NULL COMMENT '昵称',
   `a_time` int(11) DEFAULT NULL COMMENT '添加时间',
   `role_id` int(11) DEFAULT NULL COMMENT '角色',
   `mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '手机号',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理员';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='管理员';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -829,8 +829,8 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `uname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `sex` tinyint(1) DEFAULT '0' COMMENT '0未知1男2女',
   `realname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '真实姓名',
   `mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '手机号',
@@ -1070,4 +1070,4 @@ CREATE TABLE `wx_location` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-09 21:18:03
+-- Dump completed on 2020-08-23 20:43:00

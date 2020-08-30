@@ -1,4 +1,19 @@
-﻿1.备份所有表的结构（dump_mysql_structure.bat   structure.sql）
+﻿目前，有3个项目目录，api 、agent 、 instantplayadmin
+api:是给小程序提供数据接口
+instantplayadmin:是后台管理页面,因为没有前端，用的是开源的一个旧项目，得写JS代码+HTML+PHP。
+                 菜单的配置在 menu 表中。
+                 默认用户名密码：mqzhifu mqzhifu
+                 框架是单入口文件，如果是apache 记得打开rewrite ，如果是nginx 记得把 nginx.conf 里的配置加进入
+                 ctrl 下的，每一个目录，对应的是菜单，里面是具体的执行代码。
+agent:h5代理接口
+
+
+每个项目的目录下都有一个env.php，根目录下 init_env.php， 初始化的时候，只需要：php init_env.php <local|pre|online>
+
+configcenter:配置中心
+
+0.php init_env.php <local|pre|online>
+1.备份所有表的结构（dump_mysql_structure.bat   structure.sql）
 2.备份基础表的，如：地域、IP、大学  （init_data）
 3.表中的具体基础数据
 4.到正式环境，导入DB
@@ -36,13 +51,18 @@
         UPDATE product SET category_id = 3 WHERE id >20 AND id<=30;
         UPDATE product SET category_id = 4 WHERE id >30 AND id<=50;
         UPDATE product SET category_id = 5 WHERE id >50;
+	//空属性，只按个数卖的产品，先下架，暂时代码没容错
+	//UPDATE product SET  STATUS = 1 WHERE category_attr_null = 1
+	//把非空属性的产品，先上线了
+	UPDATE product SET  STATUS = 2 WHERE category_attr_null = 2
+
 
 
 alter table user charset=utf8mb4;
 
-ALTER TABLE USER CHANGE nickname nickname VARCHAR(50) CHARSET utf8mb4;
+ALTER TABLE user CHANGE nickname nickname VARCHAR(50) CHARSET utf8mb4;
 
-ALTER TABLE USER CHANGE uname uname VARCHAR(50) CHARSET utf8mb4;
+ALTER TABLE user CHANGE uname uname VARCHAR(50) CHARSET utf8mb4;
 
 
 
