@@ -8,6 +8,9 @@ instantplayadmin:是后台管理页面,因为没有前端，用的是开源的�
 agent:h5代理接口
 
 
+后台system/db  中的  目录 $_db_base_path_linux
+systen_
+
 每个项目的目录下都有一个env.php，根目录下 init_env.php， 初始化的时候，只需要：php init_env.php <local|pre|online>
 
 configcenter:配置中心
