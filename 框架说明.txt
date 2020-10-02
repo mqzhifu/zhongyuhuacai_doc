@@ -56,13 +56,21 @@ static	所有静态资源，如：JS APP包 CSS等，头像上传等等
         little      小程序项目
             app.js      入口基础，这里有各种JS基方法，还有全局数据（serverUrl serverHost），登陆流程
     upload      各种用户/管理员人为上传的图片
+	api
+	    dev
+		wx_little_share_qrcode	代理分享朋友圈
         instantplayadmin    项目名
             dev         开发环境
                 agent               代理
                 avatar              用户头像
                 banner              首页轮播图
+		category	    分类icon
                 category_attr_para  商品属性参数
+		comment		    评论
+		factory		    工厂
+		feedback	    用户反馈
                 product             产品
+		refund		    退款
 
 storage	一些变化的静态文件，如：log smarty编译后的文件 session文件等
     log     项目所有日志
