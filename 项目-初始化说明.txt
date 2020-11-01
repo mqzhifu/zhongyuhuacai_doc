@@ -38,6 +38,7 @@ configcenter:配置中心
 	(2)php shell.php insertRobot
 		(/home/www/zhongyuhuacai_static/upload/instantplayadmin/dev/avatar/ai/)
 		select * from user
+	(3)插入完成后，自增ID都是有规则的，把自增ID序列改一下
 6.导入产品（1688抓取的）
 	
 	(1)cd /home/www/zhongyuhuacai/instantplayadmin
