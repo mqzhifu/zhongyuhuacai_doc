@@ -21,7 +21,7 @@ export MYSQL_PWD=${PS}
 echo "$HOST:$PORT $DB $USER $PS $DIR";
 
 DEL_DB="drop database ${DB}"
-ADD_DB="create database ${DB} charset=utf8"
+ADD_DB="create database ${DB} charset=utf8mb4"
 
 mysql  -h${HOST} -u${USER} --default-character-set=utf8  -e"${DEL_DB};${ADD_DB};"
 echo ${DEL_DB}
