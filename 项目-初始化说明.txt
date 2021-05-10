@@ -100,3 +100,6 @@ ServerName agent-dev.xlsyfx.cn
 DocumentRoot /data/www/php/zhongyuhuacai/agent
 </VirtualHost>
 
+//===================================
+注意下短信的APPID 跟KEY
+//===============微信配置===========
