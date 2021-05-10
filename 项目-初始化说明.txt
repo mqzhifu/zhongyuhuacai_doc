@@ -22,7 +22,7 @@ configcenter:配置中心
 	(2)php shell.php dumpInitData
 		检查一下 init_data.sql
 	
-3.
+3.chmod -R 777 /data/www/php/zhongyuhuacai/storage/ 
 4.到正式环境，导入DB
 	ps:这里有个问题待解决，导入线上DB的时候，可能线上的DB已经有数据进入了，或者在线上测试，没有同步到本地
 	数据库又不能改名，挺操蛋。
