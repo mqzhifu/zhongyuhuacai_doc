@@ -79,3 +79,24 @@ ALTER TABLE user CHANGE uname uname VARCHAR(50) CHARSET utf8mb4;
 
 
 
+//=======================================
+<VirtualHost *:80>
+ServerName admin-dev.xlsyfx.cn
+DocumentRoot /data/www/php/zhongyuhuacai/instantplayadmin
+</VirtualHost>
+
+<VirtualHost *:80>
+ServerName static.xlsyfx.cn
+DocumentRoot /data/www/php/zhongyuhuacai_static
+</VirtualHost>
+
+<VirtualHost *:80>
+ServerName api-dev.xlsyfx.cn
+DocumentRoot /data/www/php/zhongyuhuacai/api
+</VirtualHost>
+
+<VirtualHost *:80>
+ServerName agent-dev.xlsyfx.cn
+DocumentRoot /data/www/php/zhongyuhuacai/agent
+</VirtualHost>
+
