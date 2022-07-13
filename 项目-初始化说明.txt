@@ -69,6 +69,7 @@ configcenter:配置中心
 	//把非空属性的产品，先上线了
 	UPDATE product SET  STATUS = 2 WHERE category_attr_null = 2
 
+ UPDATE agent SET status = 3 WHERE id  = 10000;
 
 
 alter table user charset=utf8mb4;
@@ -79,7 +80,7 @@ ALTER TABLE user CHANGE uname uname VARCHAR(50) CHARSET utf8mb4;
 
 
 
-//=======================================
+//===============apache========================
 <VirtualHost *:80>
 ServerName admin-dev.xlsyfx.cn
 DocumentRoot /data/www/php/zhongyuhuacai/instantplayadmin
@@ -101,5 +102,13 @@ DocumentRoot /data/www/php/zhongyuhuacai/agent
 </VirtualHost>
 
 //===================================
-注意下短信的APPID 跟KEY
-//===============微信配置===========
+
+//域名及资源
+小程序里有
+api
+upload
+
+//static 是个软连接
+
+
+
